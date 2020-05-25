@@ -1,5 +1,5 @@
 # portainer-development
-Version controlled codebase for building the wconquest/dev image, used for running the Portainer development environment inside a Docker container.
+Version controlled codebase for building the `wconquest/dev` image, used for running the Portainer development environment inside a Docker container.
 
 ## HOW TO USE:
 1. Git clone the Portainer repo `git clone https://github.com/portainer/portainer.git`
