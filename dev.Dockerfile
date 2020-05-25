@@ -21,8 +21,8 @@ RUN apt-get update --fix-missing && apt-get install -qq \
 
     # Install Yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-	&& apt-get update && apt-get -y install yarn
+    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+    && apt-get update && apt-get -y install yarn
 
 # Install Golang
 RUN cd /tmp \
@@ -34,20 +34,18 @@ RUN cd /tmp \
 ENV PATH "$PATH:/usr/local/go/bin"
 
 # Confirm installation
-RUN go version
-RUN node -v
-RUN yarn -v
+RUN go version && node -v && yarn -v
 
 # Clone the Portainer GitHub
 RUN cd /src \
-&& git clone https://github.com/portainer/portainer.git
+    && git clone https://github.com/portainer/portainer.git
 
 # Install dependencies
 RUN cd portainer \
-&& yarn \
-&& cd api \
-&& go build cmd/portainer/main.go \
-&& rm main
+    && yarn \
+    && cd api \
+    && go build cmd/portainer/main.go \
+    && rm main
 
 # Import supervisor config
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
